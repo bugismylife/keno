@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-12">
+        <h2 class="font-bold">Anasayfa</h2>
+    </div>
+    <!--ACTION AREA-->
+    <div class="col-sm-6" style="display: none;">
+        <div class="title-action">
+            <div class="pull-right" style="margin-top: -11px">
+                <form action="/dashboard">
+                    <table class="table table-warning">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div id="chart-orders-range" class="form-control">
+                                        <i class="fa fa-calendar"></i>
+                                        <span>2022-03-19 / 2022-03-19</span>
+                                        <b class="caret"></b>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="dsdate" id="dashboard-start-date" value="2022-03-19">
+                                    <input type="hidden" name="dedate" id="dashboard-end-date" value="2022-03-19">
+                                    <button id="refresh-dashboard" type="submit" class="btn btn-primary">Yenile</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

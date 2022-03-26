@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="{% static 'js/base.js' %}"></script>
+        <title>My Project</title>
+    </head>
+
+    <body>
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <h1><a href="index.html" class="logo">Profil <span></span></a></h1>
+                    <ul class="list-unstyled components mb-5">
+                        <li>
+                            <img alt="image" class="rounded-circle" src="https://cdn.safepayfin.com/assets/inspinia/img/avatars/male.png">
+                            <a href="#profileSubmenu" data-toggle="collapse" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+                            <ul class="list-unstyled collapse" id="profileSubmenu" style="">
+                                <li>
+                                <a href="#">Profil</a>
+                                </li>
+                                <li>
+                                <a href="#">Çıkış</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-home mr-3"></span> Ana Sayfa</a>
+                        </li>
+                        <li>
+                            <a href="#yatirimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-user mr-3"></span> Yatırım</a>
+                            <ul class="list-unstyled collapse" id="yatirimSubMenu" style="">
+                                <li>
+                                <a href="#">Yatirim 1</a>
+                                </li>
+                                <li>
+                                <a href="#">Yatirim 2</a>
+                                </li>
+                                <li>
+                                <a href="#">Yatirim 3</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#cekimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-briefcase mr-3"></span> Çekim</a>
+                            <ul class="list-unstyled collapse" id="cekimSubMenu" style="">
+                                <li>
+                                <a href="#">Cekim 1</a>
+                                </li>
+                                <li>
+                                <a href="#">Cekim 2</a>
+                                </li>
+                                <li>
+                                <a href="#">Cekim 3</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Raporlar</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-suitcase mr-3"></span> Hesaplar</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-cogs mr-3"></span> Siteler</a>
+                        </li>
+                        <!--
+                        <li>
+                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+            </nav>
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: none;">
+                    <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Portfolio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#sidebarCollapse').on('click', function() {
+                    $('#sidebar').toggleClass('active');
+                });
+            })
+        </script>       
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                
+            })
+        </script>
+    </body>
+</html>
