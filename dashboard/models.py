@@ -1,4 +1,6 @@
 from email.policy import default
+from pyexpat import model
+from tabnanny import verbose
 from django.db import models
 from django.core.validators import MinValueValidator
 
@@ -60,7 +62,8 @@ class Hesap(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     max_limit = models.DecimalField(max_digits=20, decimal_places=5)
     tc_no = models.PositiveIntegerField(validators=[MinValueValidator(11)]) 
-    
+    yontem = models.ForeignKey(IslemTipi, on_delete=models.SET_NULL, null=True)
+
     class Meta:
         verbose_name = 'Hesap'
         verbose_name_plural = 'Hesaplar'
@@ -84,17 +87,24 @@ class Firma(models.Model):
 
 
 
-
-'''
 class Yatirim(models.Model):
     durum = models.CharField(max_length=20, choices=DURUM, default='Bekleyen')
-    firma_adi = models.ForeignKey(Firma, related_name='yatirim')
-    yatirilan_tutar = models.PositiveIntegerField(max_length=20, decimal_places=5)
-    yatirilan_hesap = models.
+    firma_adi = models.ForeignKey(Firma, related_name='yatirim', on_delete=models.SET_NULL, null=True)
+    yatirilan_tutar = models.DecimalField(max_digits=20, decimal_places=5)
+    yatirilan_hesap = models.ForeignKey(Hesap, related_name='yatirim_hesap', on_delete=models.SET_NULL, null=True)
+    modified_time = models.DateField(auto_now=True)
+    created_time = models.DateField(auto_now_add=True)
+    # islemi alan
+    # islemi aldigi tarih
+    # islemi tamamladigi tarih
+
+    def __str__(self):
+        return f'{self.yatirilan_hesap.ad} {self.yatirilan_hesap.soyad}'
     # we are gonna write the module here
     class Meta:
-        pass
-
+        verbose_name = 'Yatirim'
+        verbose_name_plural = 'Yatirimlar'
+'''
 class Cekim(models.Model):
     # we are gonna write the module here
     class Meta:

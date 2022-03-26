@@ -11006,3 +11006,8 @@ a[data-toggle=collapse] {
 .subscribe-form .form-control {
     background: #3b4ec6
 }
+
+
+#hesaplar thead input {
+    width: 100%;
+}
