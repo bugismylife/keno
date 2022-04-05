@@ -15,6 +15,12 @@ AKTIF_PASIF = (
     ('Aktif', 'Aktif'),
     ('Pasif', 'Pasif'),
 )
+
+AKTARIM_TIPLERI = (
+    ('Api', 'Api'),
+    ('Manuel', 'Manuel'),
+    ('Aktarilmamis', 'Aktarilmamis')
+)
 '''
 BANKA_ADI = (
     ("Yapi Kredi", "Yapi Kredi"),
@@ -26,16 +32,6 @@ BANKA_ADI = (
     ("Qnb Bankasi", "Qnb Bankasi"),
 )
 '''
-class Banka(models.Model):
-    banka_adi = models.CharField(max_length=30, unique=True)
-    durum = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.banka_adi
-
-    class Meta:
-        verbose_name = 'Banka'
-        verbose_name_plural = 'Bankalar'
 
 class IslemTipi(models.Model):
     islem_tipi = models.CharField(max_length=50, unique=True)
@@ -47,6 +43,18 @@ class IslemTipi(models.Model):
     class Meta:
         verbose_name = 'Islem Tipi'
         verbose_name_plural = 'Islem Tipleri'
+
+class Banka(models.Model):
+    banka_adi = models.CharField(max_length=30, unique=True)
+    durum = models.CharField(max_length=10, choices=AKTIF_PASIF, default='Aktif')
+    
+    def __str__(self):
+        return self.banka_adi
+
+    class Meta:
+        verbose_name = 'Banka'
+        verbose_name_plural = 'Bankalar'
+
 
 class Hesap(models.Model):
     # created_by = models.ForeignKey(it is gonna be user who logged in)
@@ -73,10 +81,10 @@ class Hesap(models.Model):
 
 class Firma(models.Model):
     ad = models.CharField(max_length=100, unique=True)
-    # toplam_yatirim = models.DecimalField(max_digits=20, decimal_places=5)
-    # toplam_cekim = models.DecimalField(max_digits=20, decimal_places=5)
     durum = models.CharField(max_length=10, choices=AKTIF_PASIF, default='Aktif')
-    islem_tipi = models.ManyToManyField(IslemTipi, related_name='firma')
+    islem_tipi = models.ForeignKey(IslemTipi, on_delete=models.SET_NULL, null=True, related_name='firma')
+    komisyon_orani = models.DecimalField(max_digits=5, decimal_places=3, default=0)
+
     class Meta:
         verbose_name = 'Firma'
         verbose_name_plural = 'Firmalar'
@@ -85,15 +93,20 @@ class Firma(models.Model):
         return self.ad
 
 
-
-
 class Yatirim(models.Model):
     durum = models.CharField(max_length=20, choices=DURUM, default='Bekleyen')
     firma_adi = models.ForeignKey(Firma, related_name='yatirim', on_delete=models.SET_NULL, null=True)
     yatirilan_tutar = models.DecimalField(max_digits=20, decimal_places=5)
+    ucret = models.DecimalField(max_digits=20, decimal_places=5, default=0.0)
+    # user_id
+    # kullanici_adi = models.TextField() islemi yapan kisinin fake ismi
+    # tam isim
+    banka_adi = models.ForeignKey(Banka, on_delete=models.SET_NULL, null=True, related_name='yatirimlar')
     yatirilan_hesap = models.ForeignKey(Hesap, related_name='yatirim_hesap', on_delete=models.SET_NULL, null=True)
     modified_time = models.DateField(auto_now=True)
     created_time = models.DateField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField(default='0.0.0.0')
+    aktarim_tipi = models.CharField(max_length=30, choices=AKTARIM_TIPLERI, default='Aktarilmamis')
     # islemi alan
     # islemi aldigi tarih
     # islemi tamamladigi tarih

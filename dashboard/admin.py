@@ -13,8 +13,8 @@ class BankaAdmin(admin.ModelAdmin):
 
 @admin.register(Firma)
 class FirmaAdmin(admin.ModelAdmin):
-    list_display = ('ad', 'durum',)
-    filter_horizontal = ('islem_tipi',)
+    list_display = ('ad', 'durum', 'islem_tipi',)
+    # filter_horizontal = ('islem_tipi',)
 
 
 @admin.register(Hesap)

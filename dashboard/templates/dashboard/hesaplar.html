@@ -35,6 +35,8 @@
                 </a>
             </td>
         </tr>
+        {% empty %}
+
         {% endfor %}
     </tbody>
     <tfoot>
@@ -49,12 +51,6 @@
     </tfoot>
 </table>
 
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.2/css/fixedHeader.dataTables.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
 
 <script>
     $(document).ready(function () {
