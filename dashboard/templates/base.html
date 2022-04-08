@@ -22,76 +22,78 @@
 
     <body>
         <div class="wrapper d-flex align-items-stretch">
-            <nav id="sidebar">
-                <div class="custom-menu">
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                        <i class="fa fa-bars"></i>
-                        <span class="sr-only">Toggle Menu</span>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h1><a href="index.html" class="logo">Profil <span></span></a></h1>
-                    <ul class="list-unstyled components mb-5">
-                        <li>
-                            <img alt="image" class="rounded-circle" src="https://cdn.safepayfin.com/assets/inspinia/img/avatars/male.png">
-                            <a href="#profileSubmenu" data-toggle="collapse" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
-                            <ul class="list-unstyled collapse" id="profileSubmenu" style="">
-                                <li>
-                                <a href="#">Profil</a>
-                                </li>
-                                <li>
-                                <a href="#">Çıkış</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-home mr-3"></span> Ana Sayfa</a>
-                        </li>
-                        <li>
-                            <a href="#yatirimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-user mr-3"></span> Yatırım</a>
-                            <ul class="list-unstyled collapse" id="yatirimSubMenu" style="">
-                                <li>
-                                <a href="#">Yatirim 1</a>
-                                </li>
-                                <li>
-                                <a href="#">Yatirim 2</a>
-                                </li>
-                                <li>
-                                <a href="#">Yatirim 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#cekimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-briefcase mr-3"></span> Çekim</a>
-                            <ul class="list-unstyled collapse" id="cekimSubMenu" style="">
-                                <li>
-                                <a href="#">Cekim 1</a>
-                                </li>
-                                <li>
-                                <a href="#">Cekim 2</a>
-                                </li>
-                                <li>
-                                <a href="#">Cekim 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Raporlar</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'hesaplar' %}"><span class="fa fa-suitcase mr-3"></span> Hesaplar</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="fa fa-cogs mr-3"></span> Siteler</a>
-                        </li>
-                        <!--
-                        <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
-                        </li>
-                        -->
-                    </ul>
-                </div>
-            </nav>
+            {% if request.user.is_authenticated %}
+                <nav id="sidebar">
+                    <div class="custom-menu">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h1><a href="index.html" class="logo">Profil <span></span></a></h1>
+                        <ul class="list-unstyled components mb-5">
+                            <li>
+                                <img alt="image" class="rounded-circle" src="https://cdn.safepayfin.com/assets/inspinia/img/avatars/male.png">
+                                <a href="#profileSubmenu" data-toggle="collapse" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+                                <ul class="list-unstyled collapse" id="profileSubmenu" style="">
+                                    <li>
+                                    <a href="#">Profil</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">Çıkış</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-home mr-3"></span> Ana Sayfa</a>
+                            </li>
+                            <li>
+                                <a href="#yatirimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-user mr-3"></span> Yatırım</a>
+                                <ul class="list-unstyled collapse" id="yatirimSubMenu" style="">
+                                    <li>
+                                    <a href="#">Yatirim 1</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">Yatirim 2</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">Yatirim 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#cekimSubMenu" class="dropdown-toggle collapsed" data-toggle="collapse"><span class="fa fa-briefcase mr-3"></span> Çekim</a>
+                                <ul class="list-unstyled collapse" id="cekimSubMenu" style="">
+                                    <li>
+                                    <a href="#">Cekim 1</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">Cekim 2</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">Cekim 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-sticky-note mr-3"></span> Raporlar</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'hesaplar' %}"><span class="fa fa-suitcase mr-3"></span> Hesaplar</a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-cogs mr-3"></span> Siteler</a>
+                            </li>
+                            <!--
+                            <li>
+                                <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </nav>
+            {% endif %}
             <div id="content" class="p-4 p-md-5 pt-5">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: none;">
                     <div class="container-fluid">
@@ -123,6 +125,7 @@
                 {% block content %}{% endblock content %}
             </div>
         </div>
+       
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
